@@ -3,8 +3,6 @@ using ReteteCulinareMobile.Services;
 using ReteteCulinareMobile.ViewModels;
 using Refit;
 
-namespace ReteteCulinareMobile
-{
     public static class MauiProgram
     {
         public static MauiApp CreateMauiApp()
@@ -30,6 +28,5 @@ namespace ReteteCulinareMobile
             return builder.Build();
         }
     }
-}
 
 
