@@ -1,13 +1,16 @@
 ﻿using ReteteCulinareMobile.Pages;
-using ReteteCulinareMobile.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
-public partial class App : Application
+namespace ReteteCulinareMobile
 {
-    public App(IServiceProvider serviceProvider)
+    public partial class App : Application
     {
-        InitializeComponent();
+        public App(IServiceProvider serviceProvider)
+        {
+            InitializeComponent();
 
-        var recipesPage = new RecipesPage(serviceProvider.GetRequiredService<RecipesViewModel>());
-        MainPage = new NavigationPage(recipesPage);
+            var recipesPage = serviceProvider.GetRequiredService<RecipesPage>();
+            MainPage = new NavigationPage(recipesPage);
+        }
     }
 }

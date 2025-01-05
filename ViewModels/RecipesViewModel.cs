@@ -1,11 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using ReteteCulinareMobile.Models;
+﻿using ReteteCulinareMobile.Models;
 using ReteteCulinareMobile.Services;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace ReteteCulinareMobile.ViewModels
 {
-    public class RecipesViewModel 
+    public class RecipesViewModel
     {
         private readonly IRecipeApi _recipeApi;
 
@@ -29,7 +28,7 @@ namespace ReteteCulinareMobile.ViewModels
             }
             catch (Exception ex)
             {
-                // Tratează erorile (ex: logare sau afișare mesaj utilizator)
+                // Logare sau tratarea erorilor
             }
         }
     }

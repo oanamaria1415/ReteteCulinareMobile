@@ -1,35 +1,35 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
 using ReteteCulinareMobile.Services;
+using ReteteCulinareMobile.ViewModels;
 using Refit;
 
-namespace ReteteCulinareMobile;
-
-public static class MauiProgram
+namespace ReteteCulinareMobile
 {
-    public static MauiApp CreateMauiApp()
+    public static class MauiProgram
     {
-        var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .ConfigureFonts(fonts =>
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                });
+
+            // Înregistrarea serviciului API
+            builder.Services.AddHttpClient<IRecipeApi>(client =>
             {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                client.BaseAddress = new Uri("http://10.0.2.2:5000");
             });
 
-        // Configurarea serviciului API
-        builder.Services.AddHttpClient<IRecipeApi>(client =>
-        {
-            client.BaseAddress = new Uri("http://10.0.2.2:5000");
+            // Înregistrarea ViewModel-ului
+            builder.Services.AddTransient<RecipesViewModel>();
 
-        });
-
-        // Înregistrarea ViewModel-ului
-        builder.Services.AddTransient<RecipesViewModel>();
-
-        return builder.Build();
+            return builder.Build();
+        }
     }
-
-
 }
+
 
