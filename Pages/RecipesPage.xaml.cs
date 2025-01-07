@@ -1,6 +1,5 @@
 using ReteteCulinareMobile.ViewModels;
 
-namespace ReteteCulinareMobile.Pages;
 
 public partial class RecipesPage : ContentPage
 {
